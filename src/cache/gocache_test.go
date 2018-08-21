@@ -1,8 +1,8 @@
 package cache_test
 
 import (
+	"cache"
 	"fmt"
-	"innerlib/cache"
 	"sync"
 	"testing"
 	"time"
@@ -35,7 +35,7 @@ func TestCache_PutGet(t *testing.T) {
 	c.SetClearInterval(3 * time.Second) //定时清理过期数据,可选
 	c.SetMaxKeyCount(100000)            //设置LRU队列最长大小,可选
 
-	k := "key1"       //key val支持任意类型
+	k := "key1"        //key val支持任意类型
 	v, ret := c.Get(k) //第一次不存在返回空且false
 	fmt.Println(v, ret)
 	if ret == 0 {
@@ -79,7 +79,7 @@ func TestCache_MulGetFirst(t *testing.T) {
 		v, ret := c.Get("key1")
 		if ret != 0 {
 			t.Error("TestCache_MulGetFirst test err")
-		}else {
+		} else {
 			fmt.Println(v)
 		}
 		wg.Done()
@@ -89,7 +89,7 @@ func TestCache_MulGetFirst(t *testing.T) {
 		v, ret := c.Get("key2")
 		if ret != 0 {
 			t.Error("TestCache_MulGetFirst test err")
-		}else {
+		} else {
 			fmt.Println(v)
 		}
 		wg.Done()
@@ -99,7 +99,7 @@ func TestCache_MulGetFirst(t *testing.T) {
 		v, ret := c.Get("key1")
 		if ret != 0 {
 			t.Error("TestCache_MulGetFirst test err")
-		}else {
+		} else {
 			fmt.Println(v)
 		}
 		wg.Done()

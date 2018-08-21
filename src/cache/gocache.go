@@ -20,7 +20,7 @@ type call struct {
 // units of work can be executed with duplicate suppression.
 // refer to groupcache-singleflight.go
 type Group struct {
-	mu sync.Mutex       // protects m
+	mu sync.Mutex            // protects m
 	m  map[interface{}]*call // lazily initialized
 }
 
@@ -41,7 +41,7 @@ type Cache struct {
 	maxKeyCount  int
 	upfunc       UpFunc
 	initUpStatus map[interface{}]bool
-	g 			 Group
+	g            Group
 }
 
 // New new a cache obj
